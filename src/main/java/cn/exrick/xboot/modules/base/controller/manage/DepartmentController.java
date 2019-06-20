@@ -69,7 +69,7 @@ public class DepartmentController {
         User u = securityUtil.getCurrUser();
         String key = "department::"+parentId+":"+u.getId()+"_"+openDataFilter;
         String v = redisTemplate.opsForValue().get(key);
-        if(StrUtil.isNotBlank(v)){
+        if((list != null ? list.size() : 0) > 0 ){
             list = new Gson().fromJson(v, new TypeToken<List<Department>>(){}.getType());
             return new ResultUtil<List<Department>>().setData(list);
         }
